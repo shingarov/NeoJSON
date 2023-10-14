@@ -175,6 +175,7 @@ NeoJSONReader >> nextAs: schema [
 	
 	| mapping |
 	schema ifNil: [ ^ self next ].
+	schema isJsonPrimitive ifTrue: [ ^ self next ].
 	self consumeWhitespace.
 	mapping := self mappingFor: schema.
 	^ mapping readFrom: self
